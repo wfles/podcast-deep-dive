@@ -1,81 +1,8 @@
 # Podcast Deep Dive 🎙️
 
-**English** | [中文](#中文说明)
-
-An [OpenClaw](https://github.com/nicepkg/openclaw) / [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that produces structured deep-dive reports from podcast episodes.
-
-Give it a podcast link → get a full breakdown with key arguments, golden quotes, blind-spot analysis, and community insights.
-
-## Quick Install
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/wfles/podcast-deep-dive/main/install.sh)
-```
-
-That's it. One command installs for **both OpenClaw and Claude Code** automatically.
-
-> If `curl` fails on your network, try: `git clone https://github.com/wfles/podcast-deep-dive.git && cd podcast-deep-dive && bash install.sh`
-
-### What the installer does
-
-| Step | OpenClaw | Claude Code |
-|------|----------|-------------|
-| Copy skill files | `~/.qclaw/skills/podcast-deep-dive/` | `~/.claude/skills/podcast-deep-dive/` |
-| Register | Auto-detected by OpenClaw | Appends reference to `~/.claude/CLAUDE.md` |
-
-### Dependencies
-
-The installer checks for these; install if missing:
-
-- [faster-whisper](https://github.com/SYSTRAN/faster-whisper): `pip install -U faster-whisper`
-- ffmpeg: `brew install ffmpeg` (macOS) / `apt install ffmpeg` (Linux)
-
-## Usage
-
-Just send a podcast link to your assistant:
-
-```
-帮我分析这期播客：https://www.xiaoyuzhoufm.com/episode/xxxxx
-```
-
-Or in English:
-
-```
-Analyze this podcast: https://www.xiaoyuzhoufm.com/episode/xxxxx
-```
-
-The skill auto-triggers and runs the full pipeline.
-
-## What It Does
-
-1. **Transcribe** — Downloads audio and runs faster-whisper locally (小宇宙 links supported out of the box; other platforms via browser extraction)
-2. **Extract Comments & Metadata** — Pulls shownotes, time-stamped sections, and top comments
-3. **Analyze** — Produces a structured report:
-   - 📋 Episode info
-   - 📝 Section-by-section breakdown (core stance → evidence → verbatim golden quotes)
-   - 🌟 Highlights & blind spots
-   - 💬 Community insights (fact checks, deeper takes, controversies)
-   - 🎯 Summary (emotion vs. information ratio, core contribution, ideal audience)
-4. **Deliver** — Outputs in chat + saves to `podcast-reviews/`
-
-## Report Template
-
-See [references/report-template.md](references/report-template.md) for the full output structure.
-
-## Supported Platforms
-
-| Platform | Transcription | Comments | Notes |
-|----------|--------------|----------|-------|
-| 小宇宙 (xiaoyuzhoufm) | ✅ faster-whisper via xiaoyuzhou-transcribe | ✅ via `__NEXT_DATA__` | Best supported |
-| Other (generic URL) | ⚠️ Browser extraction or local whisper | ⚠️ Browser scraping | May require manual steps |
-
-## License
-
-MIT
+[中文说明](#中文说明) | **English**
 
 ---
-
-# 中文说明
 
 一个 [OpenClaw](https://github.com/nicepkg/openclaw) / [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 技能（Skill），用于对播客节目进行结构化深度复盘。
 
@@ -139,5 +66,74 @@ bash <(curl -fsSL https://raw.githubusercontent.com/wfles/podcast-deep-dive/main
 | 其他（通用 URL） | ⚠️ 浏览器提取或本地 whisper | ⚠️ 浏览器抓取 | 可能需要手动操作 |
 
 ## 许可证
+
+MIT
+
+---
+
+# English
+
+An [OpenClaw](https://github.com/nicepkg/openclaw) / [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill that produces structured deep-dive reports from podcast episodes.
+
+Give it a podcast link → get a full breakdown with key arguments, golden quotes, blind-spot analysis, and community insights.
+
+## Quick Install
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/wfles/podcast-deep-dive/main/install.sh)
+```
+
+One command installs for **both OpenClaw and Claude Code** automatically.
+
+> If `curl` fails on your network, try: `git clone https://github.com/wfles/podcast-deep-dive.git && cd podcast-deep-dive && bash install.sh`
+
+### What the installer does
+
+| Step | OpenClaw | Claude Code |
+|------|----------|-------------|
+| Copy skill files | `~/.qclaw/skills/podcast-deep-dive/` | `~/.claude/skills/podcast-deep-dive/` |
+| Register | Auto-detected by OpenClaw | Appends reference to `~/.claude/CLAUDE.md` |
+
+### Dependencies
+
+The installer checks for these; install if missing:
+
+- [faster-whisper](https://github.com/SYSTRAN/faster-whisper): `pip install -U faster-whisper`
+- ffmpeg: `brew install ffmpeg` (macOS) / `apt install ffmpeg` (Linux)
+
+## Usage
+
+Just send a podcast link to your assistant:
+
+```
+帮我分析这期播客：https://www.xiaoyuzhoufm.com/episode/xxxxx
+```
+
+The skill auto-triggers and runs the full pipeline.
+
+## What It Does
+
+1. **Transcribe** — Downloads audio and runs faster-whisper locally (小宇宙 links supported out of the box; other platforms via browser extraction)
+2. **Extract Comments & Metadata** — Pulls shownotes, time-stamped sections, and top comments
+3. **Analyze** — Produces a structured report:
+   - 📋 Episode info
+   - 📝 Section-by-section breakdown (core stance → evidence → verbatim golden quotes)
+   - 🌟 Highlights & blind spots
+   - 💬 Community insights (fact checks, deeper takes, controversies)
+   - 🎯 Summary (emotion vs. information ratio, core contribution, ideal audience)
+4. **Deliver** — Outputs in chat + saves to `podcast-reviews/`
+
+## Report Template
+
+See [references/report-template.md](references/report-template.md) for the full output structure.
+
+## Supported Platforms
+
+| Platform | Transcription | Comments | Notes |
+|----------|--------------|----------|-------|
+| 小宇宙 (xiaoyuzhoufm) | ✅ faster-whisper via xiaoyuzhou-transcribe | ✅ via `__NEXT_DATA__` | Best supported |
+| Other (generic URL) | ⚠️ Browser extraction or local whisper | ⚠️ Browser scraping | May require manual steps |
+
+## License
 
 MIT
